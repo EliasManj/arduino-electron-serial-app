@@ -60,3 +60,4 @@ typings/
 #Folders
 src/scripts/
 src/assets/
+package-lock.json

@@ -5,10 +5,11 @@ const { BrowserWindow } = electron;
 class MainWindow extends BrowserWindow{
     constructor(url){
         super({
-            height: 500,
-            width: 300,
-            movable: true,
-            resizable: true,
+            height: 380,
+            width: 250,
+            frame: false,
+            movable: false,
+            resizable: false,
             show: true,
             webPreferences: {backgroundThrottling: false}
         });

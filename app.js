@@ -17,6 +17,7 @@ try {
     baudRate: 9600
   });
 } catch (err) {
+  port = null;
   console.log(err);
 }
 
@@ -33,13 +34,15 @@ app.on('ready', () => {
 
 ipcMain.on('toggle-event', function (event, device, state) {
   serialString = `${device}:${state}`
-  console.log(serialString);
-  if (port) {
+  //console.log(serialString);
+  if (port === null) {
     port.write(serialString, function (err) {
       if (err) {
         return console.log('Error on write: ', err.message);
       }
       console.log('message written');
     });
+  } else {
+    console.log("COM is unavailable");
   }
 });

@@ -33,9 +33,9 @@ app.on('ready', () => {
 });
 
 ipcMain.on('toggle-event', function (event, device, state) {
-  serialString = `${device}:${state}`
+  serialString = `${device}:${state}`;
   //console.log(serialString);
-  if (port === null) {
+  if (port != null) {
     port.write(serialString, function (err) {
       if (err) {
         return console.log('Error on write: ', err.message);

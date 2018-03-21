@@ -4,23 +4,30 @@ const {
     ipcRenderer
 } = electron;
 
-console.log('dfs');
 
 function sendToggle(bool, device) {
-    ipcRenderer.send('toogleEvent', device, bool);
+    console.log(ipcRenderer);
+    if(bool){
+        state = 'ON';
+    } else {
+        state = 'OFF';
+    }
+    ipcRenderer.send('toggle-event', device, state);
 }
 
-
 $(document).ready(function () {
+    $('#lights').bootstrapToggle('off');
+    $('#fan').bootstrapToggle('off');
+    $('#door').bootstrapToggle('off');
     $("#lights").change(function () {
-        sendToggle($(this).prop('checked'), 'lights');
+        sendToggle($(this).prop('checked'), 'LED');
     });
 
     $("#door").change(function () {
-        sendToggle($(this).prop('checked'), 'door');
+        sendToggle($(this).prop('checked'), 'DOOR');
     });
 
     $("#fan").change(function () {
-        sendToggle($(this).prop('checked'), 'fan');
+        sendToggle($(this).prop('checked'), 'FAN');
     });
 });
